@@ -1,0 +1,7 @@
+changelog 
+PHP Fusion V7.02.07 mit php 8 Version
+
+geänderte datein
+includes/error_handling_include.php / wurde neu angepasst 
+setup.php // wurde angepasst
+search.php // wurde angepasst 

@@ -1,0 +1,25 @@
+        CMS PHP FUSION V 7.02.07 UPDATEPACK 1.5 FIX FOR PHP 8 Version
+        
+        PHP 8 Anpassung der Datein  
+          Root
+          
+          adminstration
+           Adminstration/forums.php // each wurde an foreach geändert
+          
+          downloads
+          filemanger
+          forum
+          ftp_upload
+          images
+          includes
+          includes/bbcodes/
+          includes/captchas/
+          includes/classes/
+          includes/db_handlers/
+          
+          
+          infusions
+          locale
+          themes
+          lostpasswort.php // __autoload wurde geändert.
+          
