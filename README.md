@@ -1,5 +1,5 @@
-# PHP-Fusion-V7
-PHP Fusion V7.02.07 mit  updatepack 1.5 Version
+# PHP-Fusion-V7 
+PHP Fusion V7.02.07 mit  Update Pack 1.5 Version
 PHP-Fusion ist ein privates Projekt auf PHP-Fusion 7.02.07 aufbaut. PHP-Fusion wurde aber in Teilen erweitert und geändert. Dabei wurde drauf geachtet, dass die meisten Infusionen und Themes von PHP Fusion weiterhin ohne all zu große Änderungen weiter genutzt werden können. 
 Ein Update auf PHP-Fusion für eine bestehende PHP-Fusion Seite ist NICHT möglich!
 
