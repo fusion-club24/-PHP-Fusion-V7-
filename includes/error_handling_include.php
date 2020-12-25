@@ -1,6 +1,6 @@
 <?php
 /*-------------------------------------------------------+
-| HP-Fusion based on Content Management System PHP Fusion
+| PHP Fusion Content Management System PHP Fusion
 | Copyright (C) 2002 - 2011 Nick Jones
 | http://www.php-fusion.co.uk/
 | HP-Fusion Copyright by Harlekin
@@ -8,7 +8,7 @@
 +--------------------------------------------------------+
 | Filename: error_handling_include.php
 | Author: Hans Kristian Flaatten (Starefossen)
-| Modified for HP-Fusion by Harlekin
+| Modified for PHP-Fusion by 21Matze 
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -93,64 +93,6 @@ function getErrorLevel($level, $desc = FALSE) {
 		return $locale['err_100'];
 	}
 }
-//////////////////////////////////////////////////////////////
-  /*error_reporting(E_ALL ^ E_STRICT);
-
-set_error_handler("setError");
-
-/**
- * Custom Error Handler
- *
- * @param $error_level
- * @param $error_message
- * @param $error_file
- * @param $error_line
- * @param $error_context
- */
-/*function setError($error_level, $error_message, $error_file, $error_line, $error_context) {
-    #$errors = PHPFusion\Errors::getInstance();
-    if (method_exists($errors, "setError")) {
-        $errors->setError($error_level, $error_message, $error_file, $error_line, $error_context);
-       	$result = dbquery(
-		"SELECT error_id, error_status FROM ".DB_ERRORS."
-		WHERE error_level='".intval($error_level)."' AND error_file='".stripinput($error_file)."'
-		AND error_line='".intval($error_line)."' AND error_status!='1'
-		ORDER BY error_timestamp DESC LIMIT 1"
-	);
-	if (dbrows($result) == 0) {
-		$result = dbquery(
-			"INSERT INTO ".DB_ERRORS." (
-				error_level, error_message, error_file, error_line, error_page,
-				error_user_level, error_user_ip, error_user_ip_type, error_status, error_timestamp
-			) VALUES (
-				'".intval($error_level)."', '".stripinput($error_message)."',
-				'".stripinput($error_file)."', '".intval($error_line)."',
-				'".TRUE_PHP_SELF."', '".$userdata['user_level']."', '".USER_IP."', '".USER_IP_TYPE."',
-				'0', '".time()."'
-			)"
-		);
-		$errorId = $pdo->lastInsertId();
-    }
-}
-  $_errorHandler[] = array(
-			"id" => $errorId, "level" => $error_level, "file" => $error_file,
-			"line" => $error_line
-		);
-        
-        }
-/**
- * Return footer error notice
- *
- * @return null
- */
-/*function showFooterErrors() {
-    #$errors = PHPFusion\Errors::getInstance();
-    if (method_exists($errors, "showFooterErrors")) {
-        return $errors->showFooterErrors();
-    }
-
-    return NULL;
-}  */
 
 
 
