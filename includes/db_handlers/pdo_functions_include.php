@@ -26,7 +26,7 @@ if (!defined("IN_FUSION")) { die("Access Denied"); }
  * @param string $query SQL
  * @return \PDOStatement or FALSE on error
  */
-/*function dbquery($query, $print = FALSE) {
+function dbquery($query, $print = FALSE) {
 	try {
 		$result = dbconnection()->prepare($query);
 		$result->execute();
@@ -38,8 +38,8 @@ if (!defined("IN_FUSION")) { die("Access Denied"); }
 		echo $e;
 		return FALSE;
 	}
-}*/
- function dbquery($query, $print = FALSE) {
+}
+ /*function dbquery($query, $print = FALSE) {
 
    global $mysql_queries_count, $mysql_queries_time;
 
@@ -73,7 +73,7 @@ if (!defined("IN_FUSION")) { die("Access Denied"); }
 
    }
 
-}
+}*/
 /**
  * Count the number of rows in a table filtered by conditions
  * @global int   $mysql_queries_count
