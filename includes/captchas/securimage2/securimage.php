@@ -392,7 +392,7 @@ class Securimage {
 	 */
 	function __construct() {
 		if (!defined("DB_PREFIX")) {
-			require_once __DIR__."../../../../maincore.php";
+			require_once __DIR__ ."/../../../maincore.php";
 		}
 		// Set Default Values
 		$this->image_width = 230;
@@ -400,13 +400,13 @@ class Securimage {
 		$this->image_type = SI_IMAGE_PNG;
 		$this->code_length = 6;
 		$this->charset = 'ABCDEFGHKLMNPRSTUVWYZabcdefghklmnprstuvwyz23456789';
-		$this->wordlist_file = './words/words.txt';
+		$this->wordlist_file = __DIR__ .'/words/words.txt';
 		$this->use_wordlist = FALSE;
-		$this->gd_font_file = 'gdfonts/automatic.gdf';
+		$this->gd_font_file = __DIR__ .'/gdfonts/automatic.gdf';
 		$this->use_gd_font = FALSE;
 		$this->gd_font_size = 24;
 		$this->text_x_start = 15;
-		$this->ttf_file = './AHGBold.ttf';
+		$this->ttf_file = __DIR__ .'/AHGBold.ttf';
 		$this->perturbation = 0.75;
 		$this->iscale = 5;
 		$this->text_angle_minimum = 0;
@@ -424,12 +424,12 @@ class Securimage {
 		$this->draw_lines_over_text = TRUE;
 		$this->image_signature = '';
 		$this->signature_color = new Securimage_Color(0x20, 0x50, 0xCC);
-		$this->signature_font = './AHGBold.ttf';
-		$this->audio_path = './audio/';
+		$this->signature_font = __DIR__ .'/AHGBold.ttf';
+		$this->audio_path = __DIR__ .'/audio/';
 		$this->audio_format = 'mp3';
 		$this->session_name = '';
 		$this->expiry_time = 900;
-		$this->sqlite_database = 'database/securimage.sqlite';
+		$this->sqlite_database = __DIR__ .'/database/securimage.sqlite';
 		$this->use_sqlite_db = FALSE;
 		$this->sqlite_handle = FALSE;
 	}
@@ -689,7 +689,7 @@ class Securimage {
 					} else {
 						$font_color = $this->gdtextcolor;
 					}
-					$ch = $this->code{$i};
+					$ch = $this->code[$i];
 					imagettftext($this->tmpimg, $font_size, $angle, $x, $y, $font_color, $this->ttf_file, $ch);
 					// estimate character widths to increment $x without creating spaces that are too large or too small
 					// these are best estimates to align text but may vary between fonts
@@ -792,7 +792,7 @@ class Securimage {
 	function generateCode($len) {
 		$code = '';
 		for ($i = 1, $cslen = strlen($this->charset); $i <= $len; ++$i) {
-			$code .= $this->charset{rand(0, $cslen-1)};
+			$code .= $this->charset[rand(0, $cslen-1)];
 		}
 		return $code;
 	}
@@ -864,7 +864,7 @@ class Securimage {
 			$code = $this->getCode();
 		}
 		for ($i = 0; $i < strlen($code); ++$i) {
-			$letters[] = $code{$i};
+			$letters[] = $code[$i];
 		}
 		if ($format == 'mp3') {
 			return $this->generateMP3($letters);
@@ -1009,9 +1009,9 @@ class Securimage {
 		$start += rand(1, 64); // randomize starting offset
 		$datalen = strlen($data)-$start-256; // leave last 256 bytes unchanged
 		for ($i = $start; $i < $datalen; $i += 64) {
-			$ch = ord($data{$i});
+			$ch = ord($data[$i]);
 			if ($ch < 9 || $ch > 119) continue;
-			$data{$i} = chr($ch+rand(-8, 8));
+			$data[$i] = chr($ch+rand(-8, 8));
 		}
 	}
 

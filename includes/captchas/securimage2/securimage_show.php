@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+error_reporting(0);
 /**
  * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
  * File:        securimage_show.php<br />
@@ -26,7 +26,7 @@ error_reporting(1);
  * @version   2.0.1 BETA (December 6th, 2009)
  * @package   Securimage
  */
-require "securimage.php";
+require __DIR__ ."/securimage.php";
 $img = new securimage();
 // Available TTF Fonts
 $ttf_fonts = array("AHGBold", "arlrndbld", "BasculaCollege", "Cartoon_Regular", "elephant", "HappySans", "Kingthings",

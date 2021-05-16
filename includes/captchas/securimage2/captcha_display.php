@@ -2,7 +2,7 @@
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
 | Copyright (C) PHP-Fusion Inc
-| https://www.phpfusion.com/
+| https://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: captcha_display.php
 | Author: Hans Kristian Flaatten
@@ -17,16 +17,12 @@
 +--------------------------------------------------------*/
 echo "<div class='clearfix p-l-15'>";
 // Display Capthca
-echo "<img id='captcha' src='".INCLUDES."captchas/securimage2/securimage_show.php' alt='".$locale['global_600']."' align='left' />\n";
-//echo "<a href='".INCLUDES."captchas/securimage2/securimage_play.php'>";
-//echo "<img src='".INCLUDES."captchas/securimage2/images/audio_icon.gif' alt='' align='top' class='tbl-border' style='margin-bottom:1px' /></a><br />\n";
-// Display Audio Button
-echo "<object type='application/x-shockwave-flash' data='".INCLUDES."captchas/securimage2/securimage_play.swf?audio=".INCLUDES."captchas/securimage2/securimage_play.php&amp;bgColor1=#fff&amp;bgColor2=#fff&amp;iconColor=#777&amp;borderWidth=1&amp;borderColor=#000' height='23' width='23'>";
-echo "<param name='movie' value='".INCLUDES."captchas/securimage2/securimage_play.swf?audio=".INCLUDES."captchas/securimage2/securimage_play.php&amp;bgColor1=#fff&amp;bgColor2=#fff&amp;iconColor=#777&amp;borderWidth=1&amp;borderColor=#000' />\n";
-echo "</object><br />";
+echo "<img id='captcha' src='".INCLUDES."captchas/securimage2/securimage_show.php' alt='".$locale['global_600']."' align='left' style='max-width: 90%'/>\n";
+echo "<a href='".INCLUDES."captchas/securimage2/securimage_play.php'>";
+echo "<img src='".INCLUDES."captchas/securimage2/images/audio_icon.gif' alt='' align='top' class='tbl-border' style='width: 20px; margin-bottom:1px' /></a><br />\n";
 // Display New Capthca Button
 echo "<a href='#' onclick=\"document.getElementById('captcha').src = '".INCLUDES."captchas/securimage2/securimage_show.php?sid=' + Math.random(); return false\">";
-echo "<img src='".INCLUDES."captchas/securimage2/images/refresh.gif' alt='' align='bottom' class='tbl-border' /></a>\n";
+echo "<img src='".INCLUDES."captchas/securimage2/images/refresh.gif' alt='' align='bottom' class='tbl-border' style='width: 20px;' /></a>\n";
 if (isset($this)) {
 	$this->setRequiredJavaScript("captcha_code", $locale['u195']);
 }

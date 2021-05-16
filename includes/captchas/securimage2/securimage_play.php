@@ -26,7 +26,7 @@
  * @version   2.0.1 BETA (December 6th, 2009)
  * @package   Securimage
  */
-include 'securimage.php';
+include __DIR__ .'/securimage.php';
 $img = new Securimage();
 $img->audio_format = (isset($_GET['format']) && in_array(strtolower($_GET['format']), array('mp3',
 																							'wav')) ? strtolower($_GET['format']) : 'mp3');

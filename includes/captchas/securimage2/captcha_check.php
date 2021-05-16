@@ -2,7 +2,7 @@
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
 | Copyright (C) PHP-Fusion Inc
-| https://www.phpfusion.com/
+| https://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: captcha_check.php
 | Author: Hans Kristian Flaatten

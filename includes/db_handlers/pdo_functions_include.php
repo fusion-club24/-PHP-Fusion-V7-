@@ -39,7 +39,7 @@ function dbquery($query, $print = FALSE) {
 		return FALSE;
 	}
 }
- /*function dbquery($query, $print = FALSE) {
+/* function dbquery($query, $print = FALSE) {
 
    global $mysql_queries_count, $mysql_queries_time;
 
@@ -73,7 +73,7 @@ function dbquery($query, $print = FALSE) {
 
    }
 
-}*/
+}  */
 /**
  * Count the number of rows in a table filtered by conditions
  * @global int   $mysql_queries_count
