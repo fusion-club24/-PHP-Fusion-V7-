@@ -59,9 +59,9 @@ if(!IsSet($settings['update_version'])) {
 	exit;
 }
 
-elseif(IsSet($settings['update_version']) && $settings['update_version'] < 1.5) {
+elseif(IsSet($settings['update_version']) && $settings['update_version'] < 1.6) {
 	// v1.1 bis v1.3 beinhalten keine DB Updates, nur Datei-Updates -> Deshalb nur Aenderung der Versionsnummer durchfuehren:
-	$result1 = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='1.5' WHERE settings_name='update_version'");
+	$result1 = dbquery("UPDATE ".DB_SETTINGS." SET settings_value='1.6' WHERE settings_name='update_version'");
 	redirect(FUSION_SELF);
 	exit;
 }
