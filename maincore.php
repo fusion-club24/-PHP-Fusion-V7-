@@ -7,6 +7,10 @@
 | Filename: maincore.php
 | Author: Nick Jones (Digitanium)
 +--------------------------------------------------------+
+| Angepasst an php 8.1
+| Author: 21Matze
+| Webseite : https//fusion-club24.de
++---------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
 | modify it under the terms of this license which you
@@ -815,7 +819,7 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 	return "<div class='pagenav'>\n".$res."</div>\n";
 }
 
-// Format the date & time accordingly
+// Format the date & time accordingly old 
 function showdate($format, $val) {
 	global $settings, $userdata;
 
@@ -830,6 +834,99 @@ function showdate($format, $val) {
 		return strftime($format, $val + ($offset * 3600));
 	}
 }
+// neue settings funktion 
+function fusion_get_settings($key = NULL) {
+
+    // It is initialized only once because of 'static'
+    static $settings = [];
+  #  if (empty($settings) && defined('DB_SETTINGS') && db_exists('settings')) {
+        $result = dbquery("SELECT * FROM ".DB_SETTINGS);
+        while ($data = dbarray($result)) {
+            $settings[$data['settings_name']] = $data['settings_value'];
+        }
+   # }
+
+    return $key === NULL ? $settings : ($settings[$key] ?? NULL);
+}
+
+// Format the date & time accordingly fix php 8.2 
+function showdate($format, $val, $options = []) {
+    global $userdata, $settings;
+$options['tz_override'] =  'Europe/Berlin';
+    if (isset($options['tz_override'])) {
+        $tz_client = $options['tz_override'];
+    } else {
+        if (!empty($userdata['user_timezone'])) {
+            $tz_client = $userdata['user_timezone'];
+        } else {
+            $tz_client = $offset;
+        }
+    }
+
+    if (empty($tz_client)) {
+        $tz_client = 'Europe/Berlin';
+    }
+
+    $offset = 0;
+
+    try {
+        $client_dtz = new DateTimeZone($tz_client);
+        $client_dt = new DateTime('now', $client_dtz);
+        $offset = (int)$client_dtz->getOffset($client_dt);
+    } catch (Exception $e) {
+        set_error(E_CORE_ERROR, $e->getMessage(), $e->getFile(), $e->getLine());
+    }
+
+    if (!empty($val)) {
+        $offset = (int)$val + $offset;
+        if (in_array($format, ['shortdate', 'longdate', 'forumdate', 'newsdate'])) {
+            $format = fusion_get_settings($format);
+
+            return format_date($format, $offset);
+        }
+
+        return format_date($format, $offset);
+
+    }
+
+     $format = fusion_get_settings($format);
+    $offset = time() + $offset;
+
+    return format_date($format, $offset);
+}
+/**
+ * Format date - replacement for strftime()
+ *
+ * @param string $format Dateformat
+ * @param int    $time   Timestamp
+ *
+ * @return string
+ */
+function format_date($format, $time) {
+   global  $settings, $locale;
+  # $locale = $settings['locale'];
+  # $settings = fusion_get_settings();
+   
+   $format = str_replace(
+ ['%a', '%A', '%d', '%e', '%u', '%w', '%W', '%b', '%h', '%B', '%m', '%y', '%Y', '%D', '%F', '%x', '%n', '%t', '%H', '%k', '%I', '%l', '%M', '%p', '%P', '%r', '%R', '%S', '%T', '%X', '%z', '%Z', '%c', '%s', '%%'],
+ ['D', 'l', 'd', 'j', 'N', 'w', 'W', 'M', 'M', 'F', 'm', 'y', 'Y', 'm/d/y', 'Y-m-d', 'm/d/y', "n", "t", 'H', 'G', 'h', 'g', 'i', 'A', 'a', 'h:i:s A', 'H:i', 's', 'H:i:s', 'H:i:s', 'O', 'T', 'D M j H:i:s Y', 'U', '%'],
+ $format
+ );
+
+ $date = DateTimeImmutable::createFromFormat('U', $time);
+
+if ($settings['locale'] == 'English') {
+      return $date->format($format);
+   } else {
+      $_months_en = "&nbsp;|January|February|March|April|May|June|July|August|September|October|November|December";
+      $exp_months_en = explode("|", $_months_en );
+      $exp_settings_locale = explode("|", $locale['months']);
+      $date_lang = str_replace($exp_months_en, $exp_settings_locale, $date->format($format));
+      
+      return $date_lang;
+   }
+}
+
 
 // Translate bytes into kB, MB, GB or TB by CrappoMan, lelebart fix
 function parsebytesize($size, $digits = 2, $dir = false) {

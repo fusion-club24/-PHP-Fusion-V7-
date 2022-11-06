@@ -7,6 +7,10 @@
 | Filename: settings_time.php
 | Author: Nick Jones (Digitanium)
 +--------------------------------------------------------+
+| Angepasst an php 8.1
+| Author: 21Matze
+| webseite : https//fusion-club24.de
++--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
 | modify it under the terms of this license which you
@@ -126,7 +130,8 @@ foreach ($timezoneArray AS $timezone) {
 $timestamp = time()+($settings2['timeoffset']*3600);
 $date_opts = "<option value=''>".$locale['455']."</option>\n";
 foreach($locale['dateformats'] as $dateformat) {
-	$date_opts .= "<option value='".$dateformat."'>".strftime($dateformat, $timestamp)."</option>\n";
+	#$date_opts .= "<option value='".$dateformat."'>".strftime($dateformat, $timestamp)."</option>\n";
+    $date_opts .= "<option value='".$dateformat."'>".format_date($dateformat, $timestamp)."</option>\n";
 }
 unset($dateformat);
 
@@ -134,13 +139,15 @@ opentable($locale['400']);
 echo "<form name='settingsform' method='post' action='".FUSION_SELF.$aidlink."'>\n";
 echo "<table cellpadding='0' cellspacing='0' width='500' class='center'>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['459']."):</td>\n";
-echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], (time())+($settings2['serveroffset']*3600))."</td>\n";
+#echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], (time())+($settings2['serveroffset']*3600))."</td>\n";
+echo "<td width='50%' class='tbl'>".format_date($settings2['longdate'], (time())+($settings2['serveroffset']*3600))."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['460']."):</td>\n";
 echo "<td width='50%' class='tbl'>".showdate("longdate", time())."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td valign='top' width='50%' class='tbl'>".$locale['458']." (".$locale['461']."):</td>\n";
-echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], time()+(($settings2['serveroffset']+$settings2['timeoffset'])*3600))."</td>\n";
+#echo "<td width='50%' class='tbl'>".strftime($settings2['longdate'], time()+(($settings2['serveroffset']+$settings2['timeoffset'])*3600))."</td>\n";
+echo "<td width='50%' class='tbl'>".format_date($settings2['longdate'], time()+(($settings2['serveroffset']+$settings2['timeoffset'])*3600))."</td>\n";
 echo "</tr>\n<tr>\n";
 echo "<td class='tbl2' align='center' colspan='2'>".$locale['400']." - ".$locale['450']."</td>";
 echo "</tr>\n<tr>\n";
