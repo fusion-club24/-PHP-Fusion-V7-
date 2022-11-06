@@ -820,7 +820,7 @@ function makepagenav($start, $count, $total, $range = 0, $link = "", $getname = 
 }
 
 // Format the date & time accordingly old 
-function showdate($format, $val) {
+/*function showdate($format, $val) {
 	global $settings, $userdata;
 
 	if (isset($userdata['user_offset'])) {
@@ -833,7 +833,7 @@ function showdate($format, $val) {
 	} else {
 		return strftime($format, $val + ($offset * 3600));
 	}
-}
+}*/
 // neue settings funktion 
 function fusion_get_settings($key = NULL) {
 
