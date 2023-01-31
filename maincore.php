@@ -915,7 +915,7 @@ function format_date($format, $time) {
 
  $date = DateTimeImmutable::createFromFormat('U', $time);
 
-if ($settings['locale'] == 'English') {
+/*if ($settings['locale'] == 'English') {
       return $date->format($format);
    } else {
       $_months_en = "&nbsp;|January|February|March|April|May|June|July|August|September|October|November|December";
@@ -925,9 +925,50 @@ if ($settings['locale'] == 'English') {
       
       return $date_lang;
    }
+}*/
+if ($settings['locale'] != "English") {
+      // Replacer arrays
+      $search_months_long = "&nbsp;|January|February|March|April|May|June|July|August|September|October|November|December";
+      $search_months_short ="&nbps;|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Oct|Nov|Dec";
+      $search_weekdays_long = "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday";
+      $search_weekdays_short = "Sun|Mon|Tue|Wed|Thu|Fri|Sat";
+      if (IsSet($locale['shortweekdays'])) {
+         $search = explode("|", ($search_months_long."|".$search_months_short."|".$search_weekdays_long."|".$search_weekdays_short));
+         $replace= explode("|", ($locale['months']."|".$locale['shortmonths']."|".$locale['weekdays']."|".$locale['shortweekdays']));
+      }
+      else {
+         $search = explode("|", ($search_months_long."|".$search_months_short."|".$search_weekdays_long));
+         $replace= explode("|", ($locale['months']."|".$locale['shortmonths']."|".$locale['weekdays']));
+      }
+      return str_replace($search, $replace, $date->format($format));      
+  # return str_replace($search, $replace, $date->date($format));  
+   } else{
+
+  
+    return $date->format($format);
+ }
+ 
+ }
+function showdate2($format, $val) {
+   global $settings, $userdata;
+
+   if (isset($userdata['user_offset'])) {
+      $offset = $userdata['user_offset']+$settings['serveroffset'];
+   } else {
+      $offset = $settings['timeoffset']+$settings['serveroffset'];
+   }
+ // Correction for Daylight saving Time
+ $dls = 0;
+ if (date('I', $val+($offset*3600)) == 1){
+ $dls = 3600;
+ }
+
+   if ($format == "shortdate" || $format == "longdate" || $format == "forumdate" || $format == "newsdate") {
+      return format_date($settings[$format], $val+$dls+($offset*3600));
+   } else {
+      return format_date($format, $val+$dls+($offset*3600));
+   }
 }
-
-
 // Translate bytes into kB, MB, GB or TB by CrappoMan, lelebart fix
 function parsebytesize($size, $digits = 2, $dir = false) {
 	global $locale;

@@ -33,6 +33,8 @@ $locale['phpmailer'] = "de";
 // Monate
 $locale['months']      = "&nbsp|Januar|Februar|M&auml;rz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember";
 $locale['shortmonths'] = "&nbsp|Jan|Feb|M&auml;r|Apr|Mai|Jun|Jul|Aug|Sept|Okt|Nov|Dez";
+$locale['weekdays'] = "Sonntag|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag";
+$locale['shortweekdays'] = "Son|Mon|Di|MI|Do|Fr|Sam";
 
 // Benutzerlevel
 $locale['user0']          = "Gast";
