@@ -1354,11 +1354,10 @@ class Securimage
         static $javascript_init = false;
 
         if (!isset($options['securimage_path'])) {
-      /*      $docroot = (isset($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : substr($_SERVER['SCRIPT_FILENAME'], 0, -strlen($_SERVER['SCRIPT_NAME']));
+            $docroot = (isset($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : substr($_SERVER['SCRIPT_FILENAME'], 0, -strlen($_SERVER['SCRIPT_NAME']));
             $docroot = realpath($docroot);
             $sipath  = dirname(__FILE__);
-            $securimage_path = str_replace($docroot, '', $sipath);*/
-        $securimage_path = INCLUDES.'captchas/securimage3';
+            $securimage_path = str_replace($docroot, '', $sipath);
         } else {
             $securimage_path = $options['securimage_path'];
         }
