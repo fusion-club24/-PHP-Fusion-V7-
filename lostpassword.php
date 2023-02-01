@@ -22,8 +22,8 @@ require_once "maincore.php";
 require_once THEMES."templates/header.php";
 require_once INCLUDES."sendmail_include.php";
 include LOCALE.LOCALESET."lostpassword.php";
-#require CLASSES."PasswordAuth.class.php";
-# require CLASSES."LostPassword.class.php";
+require CLASSES."PasswordAuth.class.php";
+ require CLASSES."LostPassword.class.php";
 if (iMEMBER) redirect("index.php");
 /** alter php 7.4 code
 /*function  __autoload($class) {
@@ -33,14 +33,14 @@ if (iMEMBER) redirect("index.php");
 } */     
  
      /**      neuer php 8 code         **/
-     if(!function_exists('classAutoLoader')){
+  /*   if(!function_exists('classAutoLoader')){
         function classAutoLoader($class){
             $class=strtolower($class);
             $classFile= require CLASSES.$class.".class.php";
             if(is_file($classFile)&&!class_exists($class)) include $classFile;
         }
     }
-    spl_autoload_register('classAutoLoader');
+    spl_autoload_register('classAutoLoader');*/
     
 
 add_to_title($locale['global_200'].$locale['400']);
