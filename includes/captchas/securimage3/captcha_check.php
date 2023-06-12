@@ -1,11 +1,11 @@
 <?php
 /*-------------------------------------------------------+
-| PHP-Fusion Content Management System
-| Copyright (C) PHP-Fusion Inc
-| https://www.php-fusion.co.uk/
+| PHPFusion Content Management System
+| Copyright (C) PHP Fusion Inc
+| https://phpfusion.com/
 +--------------------------------------------------------+
 | Filename: captcha_check.php
-| Author: PHP-Fusion Development Team
+| Author: Core Development Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -22,7 +22,7 @@ $securimage = new Securimage();
 if (isset($_POST['captcha_code'])) {
     $captcha_code = stripinput($_POST['captcha_code']);
 
-    if ($securimage->check($captcha_code) == TRUE) {
+   if ($securimage->check($captcha_code) == TRUE) {
         $_CAPTCHA_IS_VALID = TRUE;
     }
 }
